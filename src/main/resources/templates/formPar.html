@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Número Par</title>
+</head>
+<body>
+<form th:action="@{/numeropar}" th:object="${numeroPar}" method="post">
+    <table>
+        <tr>
+            <td>Introduce un número par:</td>
+            <td><input type="number" th:field="*{numero}" /></td>
+            <td th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Comprobar</button></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

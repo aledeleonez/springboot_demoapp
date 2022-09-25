@@ -9,6 +9,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public @ResponseBody String greeting() {
-        return "Hello World, me llamo Alejandro de Leon";
+        return "Alejandro de León Fernández";
     }
 }

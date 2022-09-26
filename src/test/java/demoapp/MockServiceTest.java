@@ -1,7 +1,9 @@
 package demoapp;
 
+import demoapp.service.NumeroParService;
 import demoapp.service.SaludoService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +27,8 @@ public class MockServiceTest {
     // Podemos también mockear el servicio
     @MockBean
     private SaludoService service;
+    @MockBean
+    private NumeroParService service2;
 
     @Test
     public void greetingShouldReturnMessageFromService() throws Exception {
@@ -35,5 +39,14 @@ public class MockServiceTest {
         this.mockMvc.perform(get("/saludo/Domingo"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hola Mock Domingo")));
+    }
+
+    @Test
+    public void devolverNumeroPar() throws Exception {
+        when(service2.esPar(2)).thenReturn("par");
+
+        this.mockMvc.perform(get("/numeropar"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("par")));
     }
 }
